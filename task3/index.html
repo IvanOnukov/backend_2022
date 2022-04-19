@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>lab3</title>
+</head>
+
+<style>
+    body{
+     background-color: #01060f; /* Цвет фона веб-страницы */
+     color: aliceblue;
+    } 
+   </style>
+
+<body>
+    <form method="POST" action="index.php">
+        <fieldset>
+            <legend>Форма</legend>
+            <p>1. Имя: <input name="name" type="text" required></p>
+            <p>2. Email: <input name="email" type="email" required></p>
+            <p>3. Дата рождения: <input name="birth_date" type="date"></p>
+            <p>4. Пол:</p>
+            
+            <div>
+            <input type="radio" name="gender"> Мужской
+            <input type="radio" name="gender"> Женский
+            </div>
+            <p>5. Количество конечностей</p>
+            <p> <input type="radio" name="limbs"> 1 
+                <input type="radio" name="limbs"> 2 
+                <input type="radio" name="limbs"> 3
+                <input type="radio" name="limbs"> 4
+            </p>
+            
+            <p>6. Сверхспособности: </p>
+            <select name="ability">
+                <option>бессмертие</option>
+                <option>прохождение сквозь стены</option>
+                <option>левитация</option>
+            </select>
+            <p>7. Биография</p>
+            <p><textarea name="comment"></textarea></p>
+            <p>8. с контрактом ознакомлен(a) 
+                <input type="checkbox"></p>
+            <p id="last">9. <input type="submit" value="Отправить"></p>
+        </fieldset>
+    </form>
+</body>
+</html>
+
