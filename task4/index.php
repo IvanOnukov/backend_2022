@@ -83,8 +83,7 @@ else {
         setcookie('fio_value', $_POST['fio'], time() + 30 * 24 * 60 * 60);
     }
 
-    if (empty($_POST['email'] || !preg_match($pattern_email, $_POST['email']) )) {
-        // Выдаем куку на день с флажком об ошибке в поле fio.
+    if (empty($_POST['email']) || !preg_match($pattern_email, $_POST['email'])) {
         setcookie('email_error', '1', time() + 24 * 60 * 60);
         $errors = TRUE;
     } else {
@@ -93,11 +92,9 @@ else {
     }
 
     if (empty($_POST['birth_date'])) {
-        // Выдаем куку на день с флажком об ошибке в поле fio.
         setcookie('birth_date_error', '1', time() + 24 * 60 * 60);
         $errors = TRUE;
     } else {
-        // Сохраняем ранее введенное в форму значение на месяц.
         setcookie('birth_date_value', $_POST['birth_date'], time() + 30 * 24 * 60 * 60);
     }
 
@@ -106,11 +103,8 @@ else {
         $errors = TRUE;
 
     } else {
-        // Сохраняем ранее введенное в форму значение на месяц.
         setcookie('consent_value', $_POST['consent'], time() + 30 * 24 * 60 * 60);
     }
-
-
 
 
 // Сохранить в Cookie признаки ошибок и значения полей.
