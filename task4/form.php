@@ -72,10 +72,7 @@ if (!empty($messages)) {
       </select>
       <p>7. Биография</p>
       <p>
-          <textarea name="comment"
-              <?php if ($errors['comment'])
-              {print 'class="error"';} ?>
-              value="<?php print $values['comment']; ?>"></textarea>
+          <textarea name="comment"></textarea>
       </p>
 
       <p>8. с контрактом ознакомлен(a)
