@@ -50,7 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     $errors['gender'] = !empty($_COOKIE['gender_error']);
     $errors['number_of_limbs'] = !empty($_COOKIE['number_of_limbs_error']);
     $errors['consent']  = !empty($_COOKIE['consent_error']);
-    // TODO: аналогично все поля.
+
 
     // Выдаем сообщения об ошибках.
     if ($errors['fio']) {

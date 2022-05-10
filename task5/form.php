@@ -40,9 +40,9 @@ if (!empty($messages)) {
     <p>5. Количество конечностей</p>
     <p>
         <input type="radio" name="number_of_limbs" value="1"> 1
+        <input type="radio" name="number_of_limbs" value="2"> 2
         <input type="radio" name="number_of_limbs" value="3"> 3
         <input type="radio" name="number_of_limbs" value="4"> 4
-        <input type="radio" name="number_of_limbs" value="2"> 2
     </p>
 
     <p>6. Сверхспособности: </p>
