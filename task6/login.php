@@ -59,6 +59,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 ?>
 <style>
 /* Сообщения об ошибках и поля с ошибками выводим с красным бордюром. */
+body{
+    background-color: #01060f; /* Цвет фона веб-страницы */
+    color: aliceblue;
+}
 .error {
   border: 2px solid red;
 }
@@ -121,9 +125,9 @@ else {
   $l=$_POST['login'];
   $p=md5($_POST['password']);
 
-  $user = 'u24224';
-  $password = '1546096';
-  $db = new PDO('mysql:host=localhost;dbname=u24224', $user, $password, array(PDO::ATTR_PERSISTENT => true));
+  $user = 'u47648';
+  $password = '3363171';
+  $db = new PDO('mysql:host=localhost;dbname=u47648', $user, $password, array(PDO::ATTR_PERSISTENT => true));
 
   $sel = $db->query("SELECT login FROM baza WHERE login = $l");
     foreach($sel as $el)

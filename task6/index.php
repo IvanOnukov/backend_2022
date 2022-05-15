@@ -233,9 +233,9 @@ else {
     // TODO: тут необходимо удалить остальные Cookies.
   }
 
-  $user = 'u24224';
-  $password = '1546096';
-  $db = new PDO('mysql:host=localhost;dbname=u24224', $user, $password, array(PDO::ATTR_PERSISTENT => true));
+  $user = 'u47648';
+  $password = '3363171';
+  $db = new PDO('mysql:host=localhost;dbname=u47648', $user, $password, array(PDO::ATTR_PERSISTENT => true));
 
 // Проверяем меняются ли ранее сохраненные данные или отправляются новые.
     if (!empty($_COOKIE[session_name()]) &&
