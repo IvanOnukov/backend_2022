@@ -149,7 +149,8 @@ else {
   // Проверяем ошибки.
   setlocale(LC_ALL, "ru_RU.UTF-8");
   $errors = FALSE;
-  if (empty($_POST['fio']) || preg_match('/[^(\x7F-\xFF)|(\s)]/', $_POST['fio'])) {
+  $pattern_name = "/^[a-zа-я]+$/iu";
+  if (empty($_POST['fio']) || !preg_match($pattern_name, $_POST['fio'])) {
     // Выдаем куку на день с флажком об ошибке в поле fio.
     setcookie('fio_error', '1', time() + 24 * 60 * 60);
     $errors = TRUE;

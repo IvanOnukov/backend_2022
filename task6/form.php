@@ -56,7 +56,7 @@ if (!empty($messages)) {
             <input type="email" name="email" placeholder="Введите e-mail" <?php if ($errors['email']) {print 'class="error"';} ?> value="<?php print $values['email']; ?>">
           </label>
             </div>
-            <p>Дата рождения: <input name="birth_date" type="date" <?php if ($errors['birth_date']) {print 'class="error"';} ?> value="<?php print $values['birth_date']; ?>"></p>
+            <p>Дата рождения: <input name="birth_date" type="date"></p>
             <p>Пол:</p>
 
           <label>
