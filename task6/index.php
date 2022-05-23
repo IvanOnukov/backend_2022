@@ -222,13 +222,13 @@ else {
   }
   else {
     // Удаляем Cookies с признаками ошибок.
-    setcookie('fio_error', '', 100000);
-    setcookie('email_error', '', 100000);
-    setcookie('gender_error', '', 100000);
-    setcookie('limbs_error', '', 100000);
-    setcookie('power_error', '', 100000);
+    setcookie('fio_error', '',       100000);
+    setcookie('email_error', '',     100000);
+    setcookie('gender_error', '',    100000);
+    setcookie('limbs_error', '',     100000);
+    setcookie('power_error', '',     100000);
     setcookie('biography_error', '', 100000);
-    setcookie('ok_error', '', 100000);
+    setcookie('ok_error', '',        100000);
     
     // TODO: тут необходимо удалить остальные Cookies.
   }
