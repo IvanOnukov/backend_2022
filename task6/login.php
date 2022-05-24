@@ -59,10 +59,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 ?>
 <style>
 /* Сообщения об ошибках и поля с ошибками выводим с красным бордюром. */
-body{
-    background-color: #01060f; /* Цвет фона веб-страницы */
-    color: aliceblue;
-}
 .error {
   border: 2px solid red;
 }
@@ -79,11 +75,8 @@ if (!empty($messages) && empty($mes)) {
     print($mes);
 ?>
 <head>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
   <meta charset="utf-8">
   <title>Авторизация</title>
-  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div id="main-aside-wrapper">
@@ -156,7 +149,7 @@ else {
   }
   else {
     setcookie('login_error', '', 100000);
-    setcookie('pass_error',  '', 100000);
+    setcookie('pass_error', '', 100000);
     setcookie('avtor_error', '', 100000);
   }
   // Делаем перенаправление.

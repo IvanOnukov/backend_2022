@@ -17,7 +17,7 @@ header('Content-Type: text/html; charset=UTF-8');
   header('HTTP/1.1 401 Unanthorized');
   header('WWW-Authenticate: Basic realm="My site"');
   print('<h1>401 Требуется авторизация</h1>');
-  exit();
+  exit(); $_SERVER['PHP_AUTH_USER'] md5($_SERVER['PHP_AUTH_PW'])
 }*/
 if (empty($_SERVER['PHP_AUTH_USER']) || empty($_SERVER['PHP_AUTH_PW'])) {
   header('HTTP/1.1 401 Unanthorized');
@@ -41,6 +41,7 @@ if (empty($result[0])) {
 }
 
 print('Вы успешно авторизовались.');
+
 
 
 // *********
@@ -105,7 +106,7 @@ if (!empty($_POST['edit_it'])){
         <thead class="thead-dark">
           <tr>
             <th scope="col">id</th>
-            <th scope="col">ФИО</th>
+            <th scope="col">Имя</th>
             <th scope="col">Email</th>
             <th scope="col">Год</th>
             <th scope="col">Пол</th>
@@ -118,12 +119,11 @@ if (!empty($_POST['edit_it'])){
           <?php foreach ($result as $value) : ?>
             <tr>
               <th scope="row"><?= $value['id'] ?></th>
-              <td><?= $value['fio'] ?></td>
+              <td><?= $value['name'] ?></td>
               <td><?= $value['email'] ?></td>
-              <td><?= $value['year'] ?></td>
-              <td><?= $value['pol'] ?></td>
-              <td><?= $value['limb'] ?></td>
-              <td><?= $value['biography'] ?></td>
+              <td><?= $value['birth_date'] ?></td>
+              <td><?= $value['gender'] ?></td>
+              <td><?= $value['number_of_limbs'] ?></td>
               <td><a class="btn btn-danger s" href='?del_id=<?= $value['id'] ?>'>Удалить</a></td>
             </tr>
           <?php endforeach; ?>
@@ -170,7 +170,7 @@ if (!empty($_POST['edit_it'])){
         <tbody>
           <?php foreach ($result2 as $value) : ?>
             <tr>
-              <td><?= $value['id_spw'] ?></td>
+              <!-- <td><?= $value['id_spw'] ?></td> -->
               <td><?= $value['id'] ?></td>
               <td><?= $value['nom_spw'] ?></td>
             </tr>
@@ -178,6 +178,12 @@ if (!empty($_POST['edit_it'])){
 
         </tbody>
       </table>
+
+
+
+
+
+
 
       <table class="table table-bordered">
         <thead>
