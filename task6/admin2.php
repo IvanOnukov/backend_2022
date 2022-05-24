@@ -26,9 +26,9 @@ if (empty($_SERVER['PHP_AUTH_USER']) || empty($_SERVER['PHP_AUTH_PW'])) {
 $usLogin = $_SERVER['PHP_AUTH_USER'];
 $usHash = md5($_SERVER['PHP_AUTH_PW']);
 
-$user = 'u24224';
-$password = '1546096';
-$db = new PDO('mysql:host=localhost;dbname=u24224', $user, $password, array(PDO::ATTR_PERSISTENT => true));
+$user = 'u47648';
+$password = '3363171';
+$db = new PDO('mysql:host=localhost;dbname=u47648', $user, $password, array(PDO::ATTR_PERSISTENT => true));
 
 $data = $db->query("SELECT * FROM adm WHERE login ='$usLogin' and hash ='$usHash'");
 $result = $data->fetchALL(PDO::FETCH_ASSOC);
@@ -182,12 +182,6 @@ if (!empty($_POST['edit_it'])){
 
         </tbody>
       </table>
-
-
-
-
-
-
 
       <table class="table table-bordered">
         <thead>
