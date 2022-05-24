@@ -156,7 +156,7 @@ else {
   }
   else {
     setcookie('login_error', '', 100000);
-    setcookie('pass_error', '', 100000);
+    setcookie('pass_error',  '', 100000);
     setcookie('avtor_error', '', 100000);
   }
   // Делаем перенаправление.

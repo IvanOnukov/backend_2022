@@ -34,12 +34,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
     // Складываем признак ошибок в массив.
     $errors = array();
-    $errors['fio'] = !empty($_COOKIE['fio_error']);
-    $errors['email'] = !empty($_COOKIE['email_error']);
-    $errors['limbs'] = !empty($_COOKIE['limbs_error']);
-    $errors['gender'] = !empty($_COOKIE['gender_error']);
-    $errors['power'] = !empty($_COOKIE['power_error']);
-    $errors['ok'] = !empty($_COOKIE['ok_error']);
+    $errors['fio']       = !empty($_COOKIE['fio_error']);
+    $errors['email']     = !empty($_COOKIE['email_error']);
+    $errors['limbs']     = !empty($_COOKIE['limbs_error']);
+    $errors['gender']    = !empty($_COOKIE['gender_error']);
+    $errors['power']     = !empty($_COOKIE['power_error']);
+    $errors['ok']        = !empty($_COOKIE['ok_error']);
     $errors['biography'] = !empty($_COOKIE['biography_error']);
     // TODO: аналогично все поля.
 
@@ -240,7 +240,14 @@ else {
             $uid = $_SESSION['uid'];
 
             $stmt = $db->prepare("UPDATE application SET fio = ?, email = ?, year = ?, pol = ?, limb = ?, biography = ? WHERE id = $uid");
-            $stmt->execute([$_POST['fio'], $_POST['email'], $_POST['year'], $_POST['gender'], $_POST['limbs'], $_POST['biography']]);
+            $stmt->execute([
+                $_POST['fio'],
+                $_POST['email'],
+                $_POST['year'],
+                $_POST['gender'],
+                $_POST['limbs'],
+                $_POST['biography']
+            ]);
 
             $db->query("DELETE FROM spw WHERE id = $uid");
             $stmt = $db->prepare("INSERT INTO spw SET id = ?, nom_spw = ?");
@@ -253,7 +260,6 @@ else {
         }
     } else {
 // Генерируем уникальный логин и пароль.
-// TODO: сделать механизм генерации, например функциями rand(), uniquid(), md5(), substr().
         $login = substr(uniqid(time()), 1, 8);
         $password = substr(md5($_POST['email']), 5, 8);
 // Сохраняем в Cookies.
@@ -273,7 +279,14 @@ else {
             $str = implode(',', $_POST['power']);
 
             $stmt = $db->prepare("INSERT INTO application SET fio = ?, email = ?, year = ?, pol = ?, limb = ?, biography = ?");
-            $stmt->execute([$_POST['fio'], $_POST['email'], $_POST['year'], $_POST['gender'], $_POST['limbs'], $_POST['biography']]);
+            $stmt->execute([
+                $_POST['fio'],
+                $_POST['email'],
+                $_POST['year'],
+                $_POST['gender'],
+                $_POST['limbs'],
+                $_POST['biography']
+            ]);
 
             $id = $db->lastInsertId();
             $stmt = $db->prepare("INSERT INTO baza SET id = ?, login = ?, password = ?");

@@ -23,8 +23,8 @@ if (empty($_SERVER['PHP_AUTH_USER']) || empty($_SERVER['PHP_AUTH_PW'])) {
   header('HTTP/1.1 401 Unanthorized');
   header('WWW-Authenticate: Basic realm="My site"');
 }
-$usLogin = $_SERVER['PHP_AUTH_USER'];
-$usHash = md5($_SERVER['PHP_AUTH_PW']);
+$usLogin = 'admin';
+$usHash = 'fas32';
 
 $user = 'u47648';
 $password = '3363171';
@@ -41,7 +41,6 @@ if (empty($result[0])) {
 }
 
 print('Вы успешно авторизовались.');
-
 
 
 // *********
@@ -83,11 +82,8 @@ if (!empty($_POST['edit_it'])){
 
 
 <head>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
   <meta charset="utf-8">
   <title>Задание 6</title>
-  <link rel="stylesheet" href="style.css">
 </head>
 
 
