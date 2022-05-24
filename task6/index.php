@@ -106,9 +106,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 // TODO: загрузить данные пользователя из БД
 // и заполнить переменную $values,
 // предварительно санитизовав.
-  $user = 'root';
-  $password = 'Yfcnhjtybt1597533';
-  $db = new PDO('mysql:host=localhost;dbname=my_db', $user, $password, array(PDO::ATTR_PERSISTENT => true));
+  $user = 'u47648';
+  $password = '3363171';
+  $db = new PDO('mysql:host=localhost;dbname=u47648', $user, $password, array(PDO::ATTR_PERSISTENT => true));
   $uid = $_SESSION['uid'];
   $res= $db->query("SELECT name, email, birth_date, gender, number_of_limbs FROM application WHERE id = $uid");
   foreach($res as $el){
