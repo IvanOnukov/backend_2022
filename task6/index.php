@@ -26,8 +26,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     $messages[] = 'Спасибо, результаты сохранены.';
   }
     if (!empty($_COOKIE['password'])) {
-        $messages[] = sprintf('Вы можете <a href="login.php">войти</a> с логином <strong>%s</strong>
-          и паролем <strong>%s</strong> для изменения данных.',
+        $messages[] = sprintf(
+            'Вы можете <a href="login.php">войти</a> 
+            с логином <strong>%s</strong>
+            и паролем <strong>%s</strong> 
+            для изменения данных.',
           strip_tags($_COOKIE['login']),
           strip_tags($_COOKIE['password']));
   }
@@ -108,6 +111,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 // предварительно санитизовав.
   $user = 'u47648';
   $password = '3363171';
+
   $db = new PDO('mysql:host=localhost;dbname=u47648', $user, $password, array(PDO::ATTR_PERSISTENT => true));
   $uid = $_SESSION['uid'];
   $res= $db->query("SELECT name, email, birth_date, gender, number_of_limbs FROM application WHERE id = $uid");
@@ -197,7 +201,7 @@ else {
     $errors = TRUE;
   }
 
-  setcookie('birth_date_value', $_POST['birth_date'], time() + 30 * 24 * 60 * 60);
+//  setcookie('birth_date_value', $_POST['birth_date'], time() + 30 * 24 * 60 * 60);
   
 // *************
 // TODO: тут необходимо проверить правильность заполнения всех остальных полей.
@@ -217,13 +221,21 @@ else {
     setcookie('number_of_limbs_error', '', 100000);
     setcookie('ability_error', '', 100000);
     setcookie('ok_error', '', 100000);
-    
-    // TODO: тут необходимо удалить остальные Cookies.
+
   }
 
   $user = 'u47648';
   $password = '3363171';
-  $db = new PDO('mysql:host=localhost;dbname=u47648', $user, $password, array(PDO::ATTR_PERSISTENT => true));
+    try {
+        $db = new PDO(
+            'mysql:host=localhost;dbname=u47648',
+            $user,
+            $password,
+            array(PDO::ATTR_PERSISTENT => true)
+        );
+    } catch (PDOException $e) {
+        die($e->getMessage());
+    }
 
 // Проверяем меняются ли ранее сохраненные данные или отправляются новые.
     if (!empty($_COOKIE[session_name()]) &&
@@ -251,16 +263,12 @@ catch(PDOException $e){
 // TODO: сделать механизм генерации, например функциями rand(), uniquid(), md5(), substr().
 $login = substr(uniqid(time()),1,8);
 $password = substr(md5($_POST['email']),5,8);
+
 // Сохраняем в Cookies.
 setcookie('login', $login);
 setcookie('password', $password);
 
 // TODO: Сохранение данных формы, логина и хеш md5() пароля в базу данных.
-// ...
-
-
-  // Сохранение в XML-документ.
-
 
 try {
   $str = implode(',',$_POST['ability']);

@@ -20,8 +20,8 @@ header('Content-Type: text/html; charset=UTF-8');
   exit(); $_SERVER['PHP_AUTH_USER'] md5($_SERVER['PHP_AUTH_PW'])
 }*/
 if (empty($_SERVER['PHP_AUTH_USER']) || empty($_SERVER['PHP_AUTH_PW'])) {
-  header('HTTP/1.1 401 Unanthorized');
-  header('WWW-Authenticate: Basic realm="My site"');
+    header('HTTP/1.1 401 Unanthorized');
+    header('WWW-Authenticate: Basic realm="My site"');
 }
 $usLogin = 'admin';
 $usHash = 'fas32';
@@ -34,22 +34,20 @@ $data = $db->query("SELECT * FROM adm WHERE login ='$usLogin' and hash ='$usHash
 $result = $data->fetchALL(PDO::FETCH_ASSOC);
 
 if (empty($result[0])) {
-  header('HTTP/1.1 401 Unanthorized');
-  header('WWW-Authenticate: Basic realm="My site"');
-  print('<h1>401 Требуется авторизация</h1>');
-  exit();
+    header('HTTP/1.1 401 Unanthorized');
+    header('WWW-Authenticate: Basic realm="My site"');
+    print('<h1>401 Требуется авторизация</h1>');
+    exit();
 }
 
 print('Вы успешно авторизовались.');
-
 
 
 // *********
 // Здесь нужно прочитать отправленные ранее пользователями данные и вывести в таблицу.
 // Реализовать просмотр и удаление всех данных.
 // *********
-$user = 'u47648';
-$password = '3363171';
+
 $db = new PDO('mysql:host=localhost;dbname=u47648', $user, $password, array(PDO::ATTR_PERSISTENT => true));
 
 $data = $db->query("SELECT * FROM application");
@@ -62,170 +60,163 @@ $data = $db->query("SELECT * FROM spw");
 $result2 = $data->fetchALL(PDO::FETCH_ASSOC);
 
 if (isset($_GET['del_id'])) {
-  $del = $_GET['del_id'];
-  $data2 = $db->query("DELETE FROM spw WHERE id='$del'");
-  $data2->execute();
-  $data3 = $db->query("DELETE FROM baza WHERE id='$del'");
-  $data3->execute();
-  $data1 = $db->query("DELETE FROM application WHERE id='$del'");
-  $data1->execute();
-  header('Location: admin2.php');
+    $del = $_GET['del_id'];
+    $data2 = $db->query("DELETE FROM spw WHERE id='$del'");
+    $data2->execute();
+    $data3 = $db->query("DELETE FROM baza WHERE id='$del'");
+    $data3->execute();
+    $data1 = $db->query("DELETE FROM application WHERE id='$del'");
+    $data1->execute();
+    header('Location: admin2.php');
 }
 
-if (!empty($_POST['edit_it'])){
-  session_start();
-  $_SESSION['uid']=(int)$_POST['edit_it'];
-  $_SESSION['login']='hi';
-  header('Location: ./');
-  }
+if (!empty($_POST['edit_it'])) {
+    session_start();
+    $_SESSION['uid'] = (int)$_POST['edit_it'];
+    $_SESSION['login'] = 'hi';
+    header('Location: ./');
+}
 
 ?>
 
 
 <head>
-  <meta charset="utf-8">
-  <title>Задание 6</title>
+    <meta charset="utf-8">
+    <title>Задание 6</title>
 </head>
 
 
-
-
 <body>
-  <div class="container-fluid p-0">
+<div class="container-fluid p-0">
     <h2>База данных</h2><br>
     <div class="justify-content-center table-responsive">
-      <form action=" " method="post">
-      <h4>Введите id для редактирования</h4>
-        <input name="edit_it"><br>
-        <input type="submit" value="OK" />
-      </form>
+        <form action=" " method="post">
+            <h4>Введите id для редактирования</h4>
+            <input name="edit_it"><br>
+            <input type="submit" value="OK"/>
+        </form>
 
-      <br>
+        <br>
 
-      <table class="table table-bordered">
-        <thead class="thead-dark">
-          <tr>
-            <th scope="col">id</th>
-            <th scope="col">Имя</th>
-            <th scope="col">Email</th>
-            <th scope="col">Год</th>
-            <th scope="col">Пол</th>
-            <th scope="col">Конечности</th>
-            <th scope="col">Биография</th>
-            <th scope="col"> </th>
-          </tr>
-        </thead>
-        <tbody class="s">
-          <?php foreach ($result as $value) : ?>
+        <table class="table table-bordered">
+            <thead class="thead-dark">
             <tr>
-              <th scope="row"><?= $value['id'] ?></th>
-              <td><?= $value['name'] ?></td>
-              <td><?= $value['email'] ?></td>
-              <td><?= $value['birth_date'] ?></td>
-              <td><?= $value['gender'] ?></td>
-              <td><?= $value['number_of_limbs'] ?></td>
-              <td><a class="btn btn-danger s" href='?del_id=<?= $value['id'] ?>'>Удалить</a></td>
+                <th scope="col">id</th>
+                <th scope="col">Имя</th>
+                <th scope="col">Email</th>
+                <th scope="col">Год</th>
+                <th scope="col">Пол</th>
+                <th scope="col">Конечности</th>
+                <th scope="col">Биография</th>
+                <th scope="col"></th>
             </tr>
-          <?php endforeach; ?>
-        </tbody>
-      </table>
+            </thead>
+            <tbody class="s">
+            <?php foreach ($result as $value) : ?>
+                <tr>
+                    <th scope="row"><?= $value['id'] ?></th>
+                    <td><?= $value['name'] ?></td>
+                    <td><?= $value['email'] ?></td>
+                    <td><?= $value['birth_date'] ?></td>
+                    <td><?= $value['gender'] ?></td>
+                    <td><?= $value['number_of_limbs'] ?></td>
+                    <td><a class="btn btn-danger s" href='?del_id=<?= $value['id'] ?>'>Удалить</a></td>
+                </tr>
+            <?php endforeach; ?>
+            </tbody>
+        </table>
 
 
-      <table class="table table-bordered">
-        <thead>
-          <tr>
-            <th scope="col">id</th>
-            <th scope="col">Логин</th>
-            <th scope="col">Пароль</th>
-          </tr>
-        </thead>
-
-        <tbody>
-          <?php foreach ($result1 as $value) : ?>
+        <table class="table table-bordered">
+            <thead>
             <tr>
-              <td><?= $value['id'] ?></td>
-              <td><?= $value['login'] ?></td>
-              <td><?= $value['password'] ?></td>
+                <th scope="col">id</th>
+                <th scope="col">Логин</th>
+                <th scope="col">Пароль</th>
             </tr>
-          <?php endforeach; ?>
+            </thead>
 
-        </tbody>
-      </table>
+            <tbody>
+            <?php foreach ($result1 as $value) : ?>
+                <tr>
+                    <td><?= $value['id'] ?></td>
+                    <td><?= $value['login'] ?></td>
+                    <td><?= $value['password'] ?></td>
+                </tr>
+            <?php endforeach; ?>
+
+            </tbody>
+        </table>
 
 
-      <h3>1-Бессмертие<br>
-        2-Прохождение сквозь стены<br>
-        3-Левитация<br>
-        4-Web</h3><br>
+        <h3>1-Бессмертие<br>
+            2-Прохождение сквозь стены<br>
+            3-Левитация<br>
+            4-Web</h3><br>
 
-      <table class="table table-bordered">
-        <thead>
-          <tr>
-            <th scope="col">id Сверхспособности</th>
-            <th scope="col">id пользователя</th>
-            <th scope="col">Номер сверхспособности</th>
-          </tr>
-        </thead>
-
-        <tbody>
-          <?php foreach ($result2 as $value) : ?>
+        <table class="table table-bordered">
+            <thead>
             <tr>
-              <!-- <td><?= $value['id_spw'] ?></td> -->
-              <td><?= $value['id'] ?></td>
-              <td><?= $value['nom_spw'] ?></td>
+                <th scope="col">id Сверхспособности</th>
+                <th scope="col">id пользователя</th>
+                <th scope="col">Номер сверхспособности</th>
             </tr>
-          <?php endforeach; ?>
+            </thead>
 
-        </tbody>
-      </table>
+            <tbody>
+            <?php foreach ($result2 as $value) : ?>
+                <tr>
+                    <!-- <td><?= $value['id_spw'] ?></td> -->
+                    <td><?= $value['id'] ?></td>
+                    <td><?= $value['nom_spw'] ?></td>
+                </tr>
+            <?php endforeach; ?>
 
-
-
-
-
-
-
-      <table class="table table-bordered">
-        <thead>
-          <tr>
-            <th scope="col">Сверхспособности</th>
-            <th scope="col">Бессмертие</th>
-            <th scope="col">Прохождение сквозь стены</th>
-            <th scope="col">Левитация</th>
-            <th scope="col">Web</th>
-
-          </tr>
-        </thead>
+            </tbody>
+        </table>
 
 
-        <tbody>
-          <?php
-          $data5 = $db->prepare("SELECT COUNT(nom_spw) FROM spw WHERE nom_spw  = '1'");
-          $data5->execute();
-          $count = $data5->fetchALL(PDO::FETCH_ASSOC);
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th scope="col">Сверхспособности</th>
+                <th scope="col">Бессмертие</th>
+                <th scope="col">Прохождение сквозь стены</th>
+                <th scope="col">Левитация</th>
+                <th scope="col">Web</th>
 
-          $data6 = $db->prepare("SELECT COUNT(nom_spw) FROM spw WHERE nom_spw  = '2'");
-          $data6->execute();
-          $count1 = $data6->fetchALL(PDO::FETCH_ASSOC);
+            </tr>
+            </thead>
 
-          $data7 = $db->prepare("SELECT COUNT(nom_spw) FROM spw WHERE nom_spw  = '3'");
-          $data7->execute();
-          $count2 = $data7->fetchALL(PDO::FETCH_ASSOC);
 
-          $data8 = $db->prepare("SELECT COUNT(nom_spw) FROM spw WHERE nom_spw  = '4'");
-          $data8->execute();
-          $count3 = $data8->fetchALL(PDO::FETCH_ASSOC);
-          ?>
-          <tr>
-            <th scope="row">Кол-во</th>
-            <td><?= $count[0]["COUNT(nom_spw)"] ?></td>
-            <td><?= $count1[0]["COUNT(nom_spw)"] ?></td>
-            <td><?= $count2[0]["COUNT(nom_spw)"] ?></td>
-            <td><?= $count3[0]["COUNT(nom_spw)"] ?></td>
-          </tr>
-        </tbody>
-      </table>
+            <tbody>
+            <?php
+            $data5 = $db->prepare("SELECT COUNT(nom_spw) FROM spw WHERE nom_spw  = '1'");
+            $data5->execute();
+            $count = $data5->fetchALL(PDO::FETCH_ASSOC);
+
+            $data6 = $db->prepare("SELECT COUNT(nom_spw) FROM spw WHERE nom_spw  = '2'");
+            $data6->execute();
+            $count1 = $data6->fetchALL(PDO::FETCH_ASSOC);
+
+            $data7 = $db->prepare("SELECT COUNT(nom_spw) FROM spw WHERE nom_spw  = '3'");
+            $data7->execute();
+            $count2 = $data7->fetchALL(PDO::FETCH_ASSOC);
+
+            $data8 = $db->prepare("SELECT COUNT(nom_spw) FROM spw WHERE nom_spw  = '4'");
+            $data8->execute();
+            $count3 = $data8->fetchALL(PDO::FETCH_ASSOC);
+            ?>
+            <tr>
+                <th scope="row">Кол-во</th>
+                <td><?= $count[0]["COUNT(nom_spw)"] ?></td>
+                <td><?= $count1[0]["COUNT(nom_spw)"] ?></td>
+                <td><?= $count2[0]["COUNT(nom_spw)"] ?></td>
+                <td><?= $count3[0]["COUNT(nom_spw)"] ?></td>
+            </tr>
+            </tbody>
+        </table>
 
     </div>
-  </div>
+</div>
 </body>
